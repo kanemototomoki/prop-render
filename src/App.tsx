@@ -1,14 +1,38 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css";
+import { CounterProvider } from "./feature/CounterProvider";
+import { Button } from "./components/Button";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>react</h1>
+      <h1>render prop</h1>
+      <div>
+        <CounterProvider
+          render={({ count, increment }) => {
+            return (
+              <div>
+                <h2>count: {count}</h2>
+                <Button onClick={() => increment()}>increment</Button>
+              </div>
+            );
+          }}
+        />
+        <hr />
+        <CounterProvider
+          render={({ count, increment }) => {
+            return (
+              <div>
+                <h2>count: {count}</h2>
+                <Button variant="blue" onClick={() => increment(2)}>
+                  increment by 2
+                </Button>
+              </div>
+            );
+          }}
+        />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
